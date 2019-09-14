@@ -194,7 +194,7 @@ public class Oblig1 {
     public static void main(String[] args) {
         int [] a = {6,10,9,4,1,3,8,5,2,7};
         delSortering(a);
-        System.out.println(Arrays.toString(a));
+        System.out.println(Arrays.toString(a)); //hvorfor vises det ikke!!!!!!
     }
 }
 
