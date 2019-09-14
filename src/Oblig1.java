@@ -122,38 +122,77 @@ public class Oblig1 {
     }
 
     //Oppgave 4
-    public static void delSortering (int [] a){
-        int par = 0;
-        int odd = 0;
 
-
-
-        if(a.length==0){
-            return;
-        }
-
-        int vs = 0;
-        int hs = a.length-1;
-
-        for (int i = 0; i < a.length; i++){
-
-            while (a[hs]%2==0){
-                hs++;
+    public static int partisjonering (int a [], int vs, int hs) {
+        while (true){
+            while (vs<=hs && a[hs] % 2 == 0) {
+                hs--;
             }
-            while (a[vs]%2==1){
-                vs--;
+            while (vs<=hs && a[vs] % 2 == 1){
+                vs++;
             }
             if(vs<hs){
-                int temp = a[vs];
-                a[vs]=a[hs];
-                a[hs]=temp;
+                bytt(a,vs++,hs--);
             }
+            return vs;
         }
     }
 
+    public static int partition (int [] a, int vs, int hs){
 
+       int i = vs;
+       int j = hs;
+       int pivot = a[(vs+hs)/2];
+
+       while (i<=j){
+           while (a[i]<pivot){
+               i++;
+           }
+
+           while (a[j]>pivot){
+               j--;
+           }
+
+           if (i<=j){
+             bytt(a,i,j);
+           }
+       }
+       return i; 
+    }
+
+    public static void kvikksort (int [] a, int vs, int hs){
+        if (vs < hs){
+            int pi = partition(a,vs,hs);
+            kvikksort(a,vs,pi-1);
+            kvikksort(a,hs,pi+1);
+        }
+        
+    }
+
+    public static void delSortering (int [] a){
+         int par = 0;
+         int odd = 0;
+
+         if (a.length == 0) {
+             return;
+         }
+
+         partisjonering(a,0,a.length-1);
+
+         for (int i = 0; i <a.length; i++){
+             if (Math.floorMod(a[i],2)== 0){ //Bruker floorMod da negative tall kan også tastes inn og vil ha "negativ" modulu tilbake
+                par = par + 1;
+             }
+             else {
+                 odd = odd +1;
+             }
+         }
+         kvikksort(a,0, odd-1);
+         kvikksort(a,odd,a.length-1);
+    }
+    
     public static void main(String[] args) {
-        int[]a= {6,10,9,4,1,3,8,5,2,7};
+        int [] a = {6,10,9,4,1,3,8,5,2,7};
         delSortering(a);
         System.out.println(Arrays.toString(a));
     }
