@@ -195,13 +195,17 @@ public class Oblig1 {
     //Oppgave 5
     public static void rotasjon (char [] a){
         int n = a.length;
+        char [] b = Arrays.copyOfRange(a,n-1,n);
         
         if ((n == 0) || (n<2)) {
            return;
         }
         else {
             for (int i = n-1; i>0; i--){
+                char temp = a[i];    // lager en egen bytt metode for char temp
                 a[i] = a[i-1];
+                temp = a[i-1];
+                System.arraycopy(b,0,a,0,0);
             }
         }
 
@@ -217,7 +221,7 @@ public class Oblig1 {
     public static void main(String[] args) {
         char [] a = "ABCDEFGHIJKLMNOP".toCharArray();
         rotasjon(a);
-        System.out.println(Arrays.toString(a)); //hvorfor vises det ikke!!!!!!
+        System.out.println(Arrays.toString(a)); 
     }
 }
 
