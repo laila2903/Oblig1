@@ -193,29 +193,19 @@ public class Oblig1 {
     }
 
     //Oppgave 5
-    public static void rotasjon (char [] a){
-        int n = a.length;
-        char [] b = Arrays.copyOfRange(a,n-1,n);
-        
-        if ((n == 0) || (n<2)) {
-           return;
-        }
-        else {
-            for (int i = n-1; i>0; i--){
-                char temp = a[i];    // lager en egen bytt metode for char temp
-                a[i] = a[i-1];
-                temp = a[i-1];
-                System.arraycopy(b,0,a,0,0);
+        public static void rotasjon(char[] a){
+
+            int n = a.length;
+            if ((n < 2) || (n == 0)) {
+                return;
             }
-        }
-
-
-    }
-
-
-
-
-
+                                      
+            char[] b = Arrays.copyOfRange(a, n - 1, n);
+            for (int i = n - 1; i >= 1; i--) {
+                a[i] = a[i - 1];
+            }
+            System.arraycopy(b, 0, a, 0, 1);
+          }
 
     
     public static void main(String[] args) {
