@@ -207,11 +207,32 @@ public class Oblig1 {
             System.arraycopy(b, 0, a, 0, 1);
           }
 
-    
+    //Oppgave 6
+    public static void rotasjon (char [] a, int k) {
+        int n = a.length;
+        if ((n < 2) || (n == 0)) {
+            return;
+        }
+        if ((k %= n) < 0) k += n;
+
+        char [] b = Arrays.copyOfRange(a,n-k,n);
+        for (int i = n-1; i >= k; i--){
+            a[i] = a[i-k];
+        }
+        System.arraycopy(b,0,a,0,k);
+    }
+
+
+
+
+
     public static void main(String[] args) {
         char [] a = "ABCDEFGHIJKLMNOP".toCharArray();
-        rotasjon(a);
-        System.out.println(Arrays.toString(a)); 
+        System.out.println(Arrays.toString(a));
+        rotasjon(a,-5);
+        System.out.println(Arrays.toString(a));
+        rotasjon(a,10);
+        System.out.println(Arrays.toString(a));
     }
 }
 
