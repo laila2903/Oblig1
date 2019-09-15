@@ -1,3 +1,4 @@
+import java.security.PublicKey;
 import java.util.Arrays;
 import java.util.NoSuchElementException;
 
@@ -190,10 +191,32 @@ public class Oblig1 {
          kvikksort(a,0, odd-1);
          kvikksort(a,odd,a.length-1);
     }
+
+    //Oppgave 5
+    public static void rotasjon (char [] a){
+        int n = a.length;
+        
+        if ((n == 0) || (n<2)) {
+           return;
+        }
+        else {
+            for (int i = n-1; i>0; i--){
+                a[i] = a[i-1];
+            }
+        }
+
+
+    }
+
+
+
+
+
+
     
     public static void main(String[] args) {
-        int [] a = {6,10,9,4,1,3,8,5,2,7};
-        delSortering(a);
+        char [] a = "ABCDEFGHIJKLMNOP".toCharArray();
+        rotasjon(a);
         System.out.println(Arrays.toString(a)); //hvorfor vises det ikke!!!!!!
     }
 }
