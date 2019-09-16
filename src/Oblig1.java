@@ -208,7 +208,7 @@ public class Oblig1 {
           }
 
     //Oppgave 6
-    public static void rotasjon (char [] a, int k) {
+    public static void rotasjon (char [] a, int k) {   // denne versonen har 2(n+d) tabelakkssseser men er mer effektiv hvis k er liten i forhold til n
         int n = a.length;
         if ((n < 2) || (n == 0)) {
             return;
@@ -220,6 +220,39 @@ public class Oblig1 {
             a[i] = a[i-k];
         }
         System.arraycopy(b,0,a,0,k);
+    }   //////sjekk effektiviteten her
+
+    public static int gcd (int a, int b){
+        return b == 0 ? a: gcd(b,a%b);
+    }
+
+    public static void rotasjon1 (char [] a, int k){   /// denne versjonen har 2n tabelakksseser, færre en den første men mer arbeid knyttet til hver akssess
+        int n = a.length;
+        if ((n < 2) || (n == 0)) {
+            return;
+        }
+        if ((k %= n) < 0) k += n;
+
+        int s = gcd(n,k);
+
+        for (int syk = 0; syk < s; syk++){
+            char verdi = a[syk];
+
+            for (int i = syk -k, j=syk; i != syk; i-=k){
+                if ( i<0) {
+                    i += n;
+                }
+                a[j] = a[i];
+                j = i;
+            }
+
+           a[syk+k] = verdi;
+        }
+    }
+
+    //Oppgave 7
+    public static String flett (String s, String t){
+
     }
 
 
