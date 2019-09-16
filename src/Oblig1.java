@@ -125,12 +125,14 @@ public class Oblig1 {
     //Oppgave 4
 
     public static int partisjonering (int a [], int vs, int hs) {
+
         while (true){
             while (vs<=hs && a[hs] % 2 == 0) {
                 hs--;
             }
             while (vs<=hs && a[vs] % 2 == 1){
                 vs++;
+
             }
             if(vs<hs){
                 bytt(a,vs++,hs--);
@@ -141,24 +143,18 @@ public class Oblig1 {
 
     public static int partition (int [] a, int vs, int hs){
 
-       int i = vs;
-       int j = hs;
-       int pivot = a[(vs+hs)/2];
+       int pivot = a[vs];
+       int i = vs - 1;
+       int j = hs + 1;
 
-       while (i<=j){
-           while (a[i]<pivot){
-               i++;
-           }
-
-           while (a[j]>pivot){
-               j--;
-           }
-
-           if (i<=j){
-             bytt(a,i,j);
+       while (i<j){
+           for (i++; a[i] < pivot; i++);
+           for (j--; a[j] > pivot; j--);
+           if(i<j){
+               bytt(a,i,j);
            }
        }
-       return i; 
+       return j;
     }
 
     public static void kvikksort (int [] a, int vs, int hs){
@@ -251,8 +247,30 @@ public class Oblig1 {
     }
 
     //Oppgave 7
-    public static String flett (String s, String t){
 
+    public static String sorter (String inputString ){
+        //konverter input string fra flett metoden alfabetisk
+        char tempArray [] = inputString.toCharArray();
+
+        //sorterer tempArray
+        Arrays.sort(tempArray);
+
+        //returnerer den sorterte stringen
+        return new String (tempArray);
+    }
+
+   public static String flett (String s, String t){
+       StringBuilder slutt = new StringBuilder();
+
+       for (int i = 0; !(i >= s.length() || i >= t.length()); i++){
+           if (i<s.length()) {
+               slutt.append(s.charAt(i));
+           }
+           if (i<t.length()) {
+               slutt.append(t.charAt(i));
+           }
+       }
+       return sorter(slutt.toString());
     }
 
 
@@ -260,12 +278,10 @@ public class Oblig1 {
 
 
     public static void main(String[] args) {
-        char [] a = "ABCDEFGHIJKLMNOP".toCharArray();
-        System.out.println(Arrays.toString(a));
-        rotasjon(a,-5);
-        System.out.println(Arrays.toString(a));
-        rotasjon(a,10);
-        System.out.println(Arrays.toString(a));
+        String s = "ABCDIJKL";
+        String t = "EFGHMNOP";
+        System.out.println(flett(s, t));
+
     }
 }
 
